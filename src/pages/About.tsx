@@ -3,44 +3,52 @@ import { ArrowRight } from 'lucide-react'
 
 export default function About() {
   const values = [
-    {
-      title: 'Premium Quality',
-      desc: 'Every fabric is sourced for durability and feel. We don\'t cut corners because our customers don\'t settle.',
-    },
-    {
-      title: 'Limited Runs',
-      desc: 'No mass production. Each piece is limited. When it\'s gone, it\'s gone. That\'s the point.',
-    },
-    {
-      title: 'Casa Culture',
-      desc: 'Casablanca has its own rhythm, its own swagger. We capture that energy and wear it.',
-    },
-    {
-      title: 'Made for the Streets',
-      desc: 'Not for the runway. Built to be worn, felt, and respected on every corner of the city.',
-    },
+    { title: 'Premium Quality', desc: "Every fabric is sourced for durability and feel. We don't cut corners because our customers don't settle." },
+    { title: 'Limited Runs', desc: "No mass production. Each piece is limited. When it's gone, it's gone. That's the point." },
+    { title: 'Casa Culture', desc: 'Casablanca has its own rhythm, its own swagger. We capture that energy and wear it.' },
+    { title: 'Made for the Streets', desc: 'Not for the runway. Built to be worn, felt, and respected on every corner of the city.' },
   ]
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] pt-20">
+    <main className="min-h-screen" style={{ background: 'var(--bg-base)' }}>
       {/* Hero */}
-      <section className="relative py-24 md:py-32 overflow-hidden border-b border-[#1e1e1e]">
+      <section className="relative overflow-hidden" style={{ minHeight: '70vh', borderBottom: '1px solid var(--border)' }}>
+        {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1594938298603-c8148c4b4b6e?w=1400&q=80&fit=crop"
+            src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1600&q=85&fit=crop&crop=center"
             alt=""
-            className="w-full h-full object-cover opacity-15"
+            className="w-full h-full object-cover"
             aria-hidden="true"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="tag text-[#c9b99a] text-xs mb-4 block">— About Us</span>
-          <h1 className="font-display text-[clamp(3rem,8vw,8rem)] text-[#e8e6e0] tracking-wider leading-none mb-6">
-            Black Bear<br /><span className="text-[#c9b99a]">Is A</span><br />Movement
-          </h1>
-          <p className="text-[#888888] max-w-lg text-base leading-relaxed">
-            Premium Streetwear from the shadows of Casa. Made for the culture.
-          </p>
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col justify-end" style={{ minHeight: '70vh', padding: '6rem 0 4rem' }}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
+            <span
+              className="tag text-xs mb-4 block animate-fade-in-up opacity-0"
+              style={{ color: '#c9b99a', animationFillMode: 'forwards', animationDelay: '0.1s' }}
+            >
+              — About Us
+            </span>
+            <h1
+              className="font-display text-[clamp(3rem,8vw,8rem)] tracking-wider leading-none mb-6 animate-fade-in-up opacity-0"
+              style={{ color: '#e8e6e0', animationFillMode: 'forwards', animationDelay: '0.2s' }}
+            >
+              Drape<br />
+              <span style={{ color: '#c9b99a' }}>Is A</span><br />
+              Movement
+            </h1>
+            <p
+              className="max-w-lg text-base leading-relaxed animate-fade-in-up opacity-0"
+              style={{ color: '#aaaaaa', animationFillMode: 'forwards', animationDelay: '0.35s' }}
+            >
+              Premium Streetwear from the shadows of Casa. Made for the culture.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -49,16 +57,16 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="tag text-[#c9b99a] text-xs mb-4 block">— Origin</span>
-              <h2 className="font-display text-5xl md:text-6xl text-[#e8e6e0] tracking-wider mb-8 leading-tight">
-                From the<br />streets of<br /><span className="text-[#c9b99a]">Casablanca</span>
+              <span className="tag text-xs mb-4 block" style={{ color: 'var(--accent)' }}>— Origin</span>
+              <h2 className="font-display text-5xl md:text-6xl tracking-wider mb-8 leading-tight" style={{ color: 'var(--text-primary)' }}>
+                From the<br />streets of<br /><span style={{ color: 'var(--accent)' }}>Casablanca</span>
               </h2>
-              <div className="space-y-5 text-[#888888] text-sm md:text-base leading-relaxed">
+              <div className="space-y-5 text-sm md:text-base leading-relaxed" style={{ color: 'var(--text-muted)' }}>
                 <p>
-                  BLACK BEAR started with one idea: Casablanca deserves its own premium streetwear brand. Not a knockoff of a Western label. Something born here. Something that speaks our language.
+                  DRAPE started with one idea: Casablanca deserves its own premium streetwear brand. Not a knockoff of a Western label. Something born here. Something that speaks our language.
                 </p>
                 <p>
-                  The bear is a symbol of quiet power. It doesn't chase. It doesn't follow. It moves on its own terms — and that's exactly how we build our collections.
+                  The silhouette is intentional. It drapes, flows, and moves with you — built for the streets of Casa where the energy is everything.
                 </p>
                 <p>
                   Every piece carries the spirit of Casa: the energy of the corniche at night, the architecture of the old medina, the relentless hustle that makes this city unlike any other.
@@ -68,32 +76,36 @@ export default function About() {
             <div className="relative h-80 md:h-[500px] rounded overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1536766820879-059fec98ec0a?w=700&q=80&fit=crop"
-                alt="Black Bear brand"
+                alt="Drape brand"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-[#0d0d0d] border-y border-[#1e1e1e]">
+      <section className="py-20" style={{ background: 'var(--bg-elevated)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="tag text-[#c9b99a] text-xs mb-4 block">— What We Stand For</span>
-          <h2 className="font-display text-5xl text-[#e8e6e0] tracking-wider mb-12">Our Values</h2>
+          <span className="tag text-xs mb-4 block" style={{ color: 'var(--accent)' }}>— What We Stand For</span>
+          <h2 className="font-display text-5xl tracking-wider mb-12" style={{ color: 'var(--text-primary)' }}>Our Values</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
               <div
                 key={v.title}
-                className="bg-[#141414] border border-[#1e1e1e] rounded p-6 hover:border-[#c9b99a]/30 transition-colors"
+                className="rounded p-6 transition-colors"
+                style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
               >
-                <div className="w-8 h-8 rounded border border-[#2a2a2a] flex items-center justify-center mb-4">
-                  <span className="font-display text-[#c9b99a] text-sm">0{i + 1}</span>
+                <div
+                  className="w-8 h-8 rounded flex items-center justify-center mb-4"
+                  style={{ border: '1px solid var(--border-mid)' }}
+                >
+                  <span className="font-display text-sm" style={{ color: 'var(--accent)' }}>0{i + 1}</span>
                 </div>
-                <h3 className="font-display text-2xl text-[#e8e6e0] tracking-wider mb-3">{v.title}</h3>
-                <p className="text-[#888888] text-sm leading-relaxed">{v.desc}</p>
+                <h3 className="font-display text-2xl tracking-wider mb-3" style={{ color: 'var(--text-primary)' }}>{v.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-muted)' }}>{v.desc}</p>
               </div>
             ))}
           </div>
@@ -103,13 +115,10 @@ export default function About() {
       {/* CTA */}
       <section className="py-20 text-center">
         <div className="max-w-2xl mx-auto px-4">
-          <h2 className="font-display text-5xl md:text-6xl text-[#e8e6e0] tracking-wider mb-6">
-            Ready to Wear<br /><span className="text-[#c9b99a]">The Culture?</span>
+          <h2 className="font-display text-5xl md:text-6xl tracking-wider mb-6" style={{ color: 'var(--text-primary)' }}>
+            Ready to Wear<br /><span style={{ color: 'var(--accent)' }}>The Culture?</span>
           </h2>
-          <Link
-            to="/shop"
-            className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded text-sm"
-          >
+          <Link to="/shop" className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded text-sm">
             Shop Collection
             <ArrowRight size={16} />
           </Link>

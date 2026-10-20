@@ -1,9 +1,13 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { CartProvider } from './context/CartContext'
+import { ThemeProvider } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CartDrawer from './components/CartDrawer'
+import ScrollToTopButton from './components/ScrollToTopButton'
+import PageTransition from './components/PageTransition'
+import { useScrollReveal } from './hooks/useScrollReveal'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import ProductDetail from './pages/ProductDetail'
@@ -21,22 +25,27 @@ function ScrollToTop() {
 }
 
 function AppLayout() {
+  useScrollReveal()
+
   return (
-    <div className="flex flex-col min-h-screen bg-[#0a0a0a]">
+    <div className="flex flex-col min-h-screen" style={{ background: 'var(--bg-base)', color: 'var(--text-primary)' }}>
       <ScrollToTop />
       <Navbar />
       <CartDrawer />
+      <ScrollToTopButton />
       <div className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/location" element={<Location />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </PageTransition>
       </div>
       <Footer />
     </div>
@@ -45,14 +54,12 @@ function AppLayout() {
 
 function NotFound() {
   return (
-    <main className="min-h-screen bg-[#0a0a0a] flex items-center justify-center pt-20">
+    <main className="min-h-screen flex items-center justify-center pt-20" style={{ background: 'var(--bg-base)' }}>
       <div className="text-center">
-        <p className="font-display text-[8rem] leading-none text-[#1e1e1e] tracking-wider">404</p>
-        <p className="font-display text-4xl text-[#e8e6e0] tracking-wider mb-3">Page Not Found</p>
-        <p className="text-[#888888] text-sm mb-8">You wandered into the shadows.</p>
-        <a href="/" className="btn-primary px-8 py-4 rounded text-sm inline-block">
-          Go Home
-        </a>
+        <p className="font-display text-[8rem] leading-none tracking-wider" style={{ color: 'var(--border)' }}>404</p>
+        <p className="font-display text-4xl tracking-wider mb-3" style={{ color: 'var(--text-primary)' }}>Page Not Found</p>
+        <p className="text-sm mb-8" style={{ color: 'var(--text-muted)' }}>You wandered into the shadows.</p>
+        <a href="/" className="btn-primary px-8 py-4 rounded text-sm inline-block">Go Home</a>
       </div>
     </main>
   )
@@ -61,9 +68,11 @@ function NotFound() {
 export default function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <AppLayout />
-      </CartProvider>
+      <ThemeProvider>
+        <CartProvider>
+          <AppLayout />
+        </CartProvider>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }

@@ -12,27 +12,18 @@ export default function Shop() {
   const [showNew, setShowNew] = useState(false)
   const [mobileFilters, setMobileFilters] = useState(false)
 
-  // Read URL params on mount
   useEffect(() => {
     const cat = searchParams.get('category') as Category | null
     const filterNew = searchParams.get('filter') === 'new'
-    if (cat && categories.includes(cat)) {
-      setSelectedCategories([cat])
-    }
+    if (cat && categories.includes(cat)) setSelectedCategories([cat])
     if (filterNew) setShowNew(true)
   }, [])
 
-  const toggleCategory = (cat: Category) => {
-    setSelectedCategories((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    )
-  }
+  const toggleCategory = (cat: Category) =>
+    setSelectedCategories((prev) => prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat])
 
-  const toggleSize = (size: Size) => {
-    setSelectedSizes((prev) =>
-      prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size]
-    )
-  }
+  const toggleSize = (size: Size) =>
+    setSelectedSizes((prev) => prev.includes(size) ? prev.filter((s) => s !== size) : [...prev, size])
 
   const clearFilters = () => {
     setSelectedCategories([])
@@ -43,9 +34,7 @@ export default function Shop() {
 
   const filtered = products.filter((p) => {
     const catMatch = selectedCategories.length === 0 || selectedCategories.includes(p.category)
-    const sizeMatch =
-      selectedSizes.length === 0 ||
-      selectedSizes.some((s) => p.sizes.includes(s))
+    const sizeMatch = selectedSizes.length === 0 || selectedSizes.some((s) => p.sizes.includes(s))
     const newMatch = !showNew || p.isNew
     return catMatch && sizeMatch && newMatch
   })
@@ -56,14 +45,15 @@ export default function Shop() {
     <div className="space-y-8">
       {/* New Drops toggle */}
       <div>
-        <h3 className="tag text-[#c9b99a] text-xs mb-4">Filter</h3>
+        <h3 className="tag text-xs mb-4" style={{ color: 'var(--accent)' }}>Filter</h3>
         <button
           onClick={() => setShowNew(!showNew)}
-          className={`w-full text-left px-4 py-2.5 rounded border text-sm transition-all ${
+          className="w-full text-left px-4 py-2.5 rounded text-sm transition-all"
+          style={
             showNew
-              ? 'border-[#c9b99a] text-[#c9b99a] bg-[#c9b99a]/10'
-              : 'border-[#2a2a2a] text-[#888888] hover:border-[#3a3a3a]'
-          }`}
+              ? { border: '1px solid var(--accent)', color: 'var(--accent)', background: 'color-mix(in srgb, var(--accent) 10%, transparent)' }
+              : { border: '1px solid var(--border-mid)', color: 'var(--text-muted)', background: 'transparent' }
+          }
         >
           New Drops Only
         </button>
@@ -71,17 +61,18 @@ export default function Shop() {
 
       {/* Categories */}
       <div>
-        <h3 className="tag text-[#c9b99a] text-xs mb-4">Category</h3>
+        <h3 className="tag text-xs mb-4" style={{ color: 'var(--accent)' }}>Category</h3>
         <div className="space-y-1.5">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => toggleCategory(cat)}
-              className={`w-full text-left px-4 py-2.5 rounded text-sm transition-all ${
+              className="w-full text-left px-4 py-2.5 rounded text-sm transition-all"
+              style={
                 selectedCategories.includes(cat)
-                  ? 'bg-[#e8e6e0] text-[#0a0a0a] font-medium'
-                  : 'text-[#888888] hover:text-[#e8e6e0] hover:bg-[#1a1a1a]'
-              }`}
+                  ? { background: 'var(--text-primary)', color: 'var(--bg-base)', fontWeight: 500 }
+                  : { background: 'transparent', color: 'var(--text-muted)' }
+              }
             >
               {cat}
             </button>
@@ -91,17 +82,18 @@ export default function Shop() {
 
       {/* Sizes */}
       <div>
-        <h3 className="tag text-[#c9b99a] text-xs mb-4">Size</h3>
+        <h3 className="tag text-xs mb-4" style={{ color: 'var(--accent)' }}>Size</h3>
         <div className="grid grid-cols-3 gap-1.5">
           {sizes.filter((s) => s !== 'One Size').map((size) => (
             <button
               key={size}
               onClick={() => toggleSize(size)}
-              className={`py-2 rounded border text-xs font-medium transition-all ${
+              className="py-2 rounded text-xs font-medium transition-all"
+              style={
                 selectedSizes.includes(size)
-                  ? 'border-[#c9b99a] text-[#c9b99a] bg-[#c9b99a]/10'
-                  : 'border-[#2a2a2a] text-[#888888] hover:border-[#3a3a3a]'
-              }`}
+                  ? { border: '1px solid var(--accent)', color: 'var(--accent)', background: 'color-mix(in srgb, var(--accent) 10%, transparent)' }
+                  : { border: '1px solid var(--border-mid)', color: 'var(--text-muted)', background: 'transparent' }
+              }
             >
               {size}
             </button>
@@ -113,7 +105,8 @@ export default function Shop() {
       {hasFilters && (
         <button
           onClick={clearFilters}
-          className="flex items-center gap-2 text-[#8b1a1a] text-xs tag hover:text-red-400 transition-colors"
+          className="flex items-center gap-2 text-xs tag transition-colors"
+          style={{ color: 'var(--color-error)' }}
         >
           <X size={12} />
           Clear Filters
@@ -123,13 +116,13 @@ export default function Shop() {
   )
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] pt-14 sm:pt-20">
+    <main className="min-h-screen pt-14 sm:pt-20" style={{ background: 'var(--bg-base)' }}>
       {/* Page Header */}
-      <div className="border-b border-[#1e1e1e] py-8 sm:py-12 px-4">
+      <div className="py-8 sm:py-12 px-4" style={{ borderBottom: '1px solid var(--border)' }}>
         <div className="max-w-7xl mx-auto">
-          <span className="tag text-[#c9b99a] text-xs mb-2 sm:mb-3 block">— Collection</span>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl text-[#e8e6e0] tracking-wider">Shop</h1>
-          <p className="text-[#888888] mt-2 sm:mt-3 text-sm">
+          <span className="tag text-xs mb-2 sm:mb-3 block" style={{ color: 'var(--accent)' }}>— Collection</span>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl tracking-wider" style={{ color: 'var(--text-primary)' }}>Shop</h1>
+          <p className="mt-2 sm:mt-3 text-sm" style={{ color: 'var(--text-muted)' }}>
             {filtered.length} piece{filtered.length !== 1 ? 's' : ''} available
           </p>
         </div>
@@ -146,7 +139,7 @@ export default function Shop() {
           <div className="flex-1 min-w-0">
             {/* Mobile filter toggle */}
             <div className="flex items-center justify-between mb-6 lg:hidden">
-              <p className="text-[#888888] text-sm">{filtered.length} items</p>
+              <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{filtered.length} items</p>
               <button
                 onClick={() => setMobileFilters(true)}
                 className="flex items-center gap-2 btn-outline px-4 py-2 rounded text-xs"
@@ -156,14 +149,15 @@ export default function Shop() {
               </button>
             </div>
 
-            {/* Active filters */}
+            {/* Active filter chips */}
             {hasFilters && (
               <div className="flex flex-wrap items-center gap-2 mb-6">
                 {selectedCategories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => toggleCategory(cat)}
-                    className="flex items-center gap-1.5 bg-[#1e1e1e] border border-[#2a2a2a] text-[#e8e6e0] text-xs px-3 py-1.5 rounded-full tag hover:border-[#8b1a1a] transition-colors"
+                    className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full tag transition-colors"
+                    style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-mid)', color: 'var(--text-primary)' }}
                   >
                     {cat} <X size={10} />
                   </button>
@@ -172,7 +166,8 @@ export default function Shop() {
                   <button
                     key={s}
                     onClick={() => toggleSize(s)}
-                    className="flex items-center gap-1.5 bg-[#1e1e1e] border border-[#2a2a2a] text-[#e8e6e0] text-xs px-3 py-1.5 rounded-full tag hover:border-[#8b1a1a] transition-colors"
+                    className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full tag transition-colors"
+                    style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-mid)', color: 'var(--text-primary)' }}
                   >
                     Size {s} <X size={10} />
                   </button>
@@ -180,7 +175,8 @@ export default function Shop() {
                 {showNew && (
                   <button
                     onClick={() => setShowNew(false)}
-                    className="flex items-center gap-1.5 bg-[#c9b99a]/10 border border-[#c9b99a] text-[#c9b99a] text-xs px-3 py-1.5 rounded-full tag"
+                    className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full tag"
+                    style={{ background: 'color-mix(in srgb, var(--accent) 10%, transparent)', border: '1px solid var(--accent)', color: 'var(--accent)' }}
                   >
                     New Drops <X size={10} />
                   </button>
@@ -197,8 +193,8 @@ export default function Shop() {
               </div>
             ) : (
               <div className="text-center py-24">
-                <p className="text-[#3a3a3a] font-display text-4xl tracking-wider mb-3">No Pieces Found</p>
-                <p className="text-[#888888] text-sm mb-6">Try adjusting your filters.</p>
+                <p className="font-display text-4xl tracking-wider mb-3" style={{ color: 'var(--text-faint)' }}>No Pieces Found</p>
+                <p className="text-sm mb-6" style={{ color: 'var(--text-muted)' }}>Try adjusting your filters.</p>
                 <button onClick={clearFilters} className="btn-outline px-6 py-3 rounded text-sm">
                   Clear Filters
                 </button>
@@ -215,10 +211,16 @@ export default function Shop() {
             className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm animate-fade-in"
             onClick={() => setMobileFilters(false)}
           />
-          <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#141414] border-t border-[#2a2a2a] rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto animate-fade-in-up">
+          <div
+            className="fixed bottom-0 left-0 right-0 z-50 rounded-t-2xl p-6 max-h-[80vh] overflow-y-auto animate-fade-in-up"
+            style={{ background: 'var(--bg-surface)', borderTop: '1px solid var(--border-mid)' }}
+          >
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-display text-2xl tracking-widest text-[#e8e6e0]">Filters</h2>
-              <button onClick={() => setMobileFilters(false)} className="text-[#888888] hover:text-[#e8e6e0]">
+              <h2 className="font-display text-2xl tracking-widest" style={{ color: 'var(--text-primary)' }}>Filters</h2>
+              <button
+                onClick={() => setMobileFilters(false)}
+                style={{ color: 'var(--text-muted)' }}
+              >
                 <X size={22} />
               </button>
             </div>

@@ -50,7 +50,6 @@ export default function Home() {
     'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80&fit=crop',
   ]
 
-  // Auto-advance slides
   useEffect(() => {
     const timer = setInterval(() => {
       goToSlide((activeSlide + 1) % HERO_SLIDES.length)
@@ -72,9 +71,9 @@ export default function Home() {
   return (
     <main>
       {/* ─── HERO ─── */}
-      <section className="relative overflow-hidden bg-[#0a0a0a]" style={{ height: '100svh', minHeight: '580px' }}>
+      <section className="relative overflow-hidden" style={{ background: '#0a0a0a', height: '100svh', minHeight: '580px' }}>
 
-        {/* ── Background image layers ── */}
+        {/* Background image layers */}
         {HERO_SLIDES.map((slide, i) => (
           <div
             key={slide.id}
@@ -89,18 +88,14 @@ export default function Home() {
               alt=""
               aria-hidden="true"
               className="w-full h-full object-cover object-top"
-              style={{
-                transform: i === activeSlide ? 'scale(1.04)' : 'scale(1)',
-                transition: 'transform 6s ease',
-              }}
+              style={{ transform: i === activeSlide ? 'scale(1.04)' : 'scale(1)', transition: 'transform 6s ease' }}
             />
-            {/* Darker gradient on mobile so text is always readable */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/65 to-[#0a0a0a]/20 sm:via-[#0a0a0a]/55" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-[#0a0a0a]/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/65 to-black/20 sm:via-black/55" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/40" />
           </div>
         ))}
 
-        {/* ── Noise texture overlay ── */}
+        {/* Noise texture */}
         <div
           className="absolute inset-0 z-[3] pointer-events-none opacity-[0.03]"
           style={{
@@ -110,22 +105,22 @@ export default function Home() {
           aria-hidden="true"
         />
 
-        {/* ── Left vertical label ── */}
+        {/* Left vertical label */}
         <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10 hidden lg:flex flex-col items-center gap-4">
           <div className="w-px h-16 bg-gradient-to-b from-transparent to-[#c9b99a]/40" />
           <span
-            className="tag text-[#c9b99a]/50 text-[9px] tracking-[0.3em]"
-            style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+            className="tag text-[9px] tracking-[0.3em]"
+            style={{ color: 'rgba(201,185,154,0.5)', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
           >
-            blackbear.ma — Casa 2024
+            drape.ma — Casa 2024
           </span>
           <div className="w-px h-16 bg-gradient-to-t from-transparent to-[#c9b99a]/40" />
         </div>
 
-        {/* ── Main content ── */}
+        {/* Main content */}
         <div className="relative z-10 h-full flex flex-col pt-16 sm:pt-20 md:pt-24 px-4 sm:px-8 lg:px-16 max-w-screen-2xl mx-auto">
 
-          {/* Top — eyebrow tag */}
+          {/* Eyebrow */}
           <div
             className="flex items-center gap-3 pt-2 animate-fade-in-up opacity-0"
             style={{ animationFillMode: 'forwards', animationDelay: '0.1s' }}
@@ -136,53 +131,36 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Middle — headline fills remaining space */}
+          {/* Headline */}
           <div className="flex-1 flex items-center py-6 sm:py-8">
             <div className="w-full">
-              {/* Watermark — desktop only */}
               <div
                 className="absolute left-0 right-0 top-1/2 -translate-y-1/2 text-center pointer-events-none select-none z-0 hidden sm:block"
                 aria-hidden="true"
               >
                 <span className="font-display text-[clamp(5rem,18vw,18rem)] text-white/[0.025] leading-none tracking-widest">
-                  BEAR
+                  DRAPE
                 </span>
               </div>
 
               <div className="relative z-10">
                 <h1 className="font-display leading-[0.9] tracking-wide">
-                  <span
-                    className="block text-[clamp(2.8rem,9.5vw,7.5rem)] text-[#e8e6e0] animate-fade-in-up opacity-0"
-                    style={{ animationFillMode: 'forwards', animationDelay: '0.2s' }}
-                  >
-                    Premium
-                  </span>
-                  <span
-                    className="block text-[clamp(2.8rem,9.5vw,7.5rem)] text-[#e8e6e0] animate-fade-in-up opacity-0"
-                    style={{ animationFillMode: 'forwards', animationDelay: '0.32s' }}
-                  >
-                    Streetwear
-                  </span>
-                  <span
-                    className="block text-[clamp(2.8rem,9.5vw,7.5rem)] animate-fade-in-up opacity-0"
-                    style={{
-                      animationFillMode: 'forwards',
-                      animationDelay: '0.44s',
-                      color: 'transparent',
-                      WebkitTextStroke: '1.5px #c9b99a',
-                    }}
-                  >
-                    From The Shadows
-                  </span>
-                  <span
-                    className="block text-[clamp(2.8rem,9.5vw,7.5rem)] text-[#c9b99a] animate-fade-in-up opacity-0"
-                    style={{ animationFillMode: 'forwards', animationDelay: '0.56s' }}
-                  >
-                    Of Casa.
-                  </span>
+                  {['Premium', 'Streetwear', 'From The Shadows', 'Of Casa.'].map((line, i) => (
+                    <span
+                      key={line}
+                      className="block text-[clamp(2.8rem,9.5vw,7.5rem)] animate-fade-in-up opacity-0"
+                      style={{
+                        animationFillMode: 'forwards',
+                        animationDelay: `${0.2 + i * 0.12}s`,
+                        color: i === 2 ? 'transparent' : i === 3 ? '#c9b99a' : '#e8e6e0',
+                        WebkitTextStroke: i === 2 ? '1.5px #c9b99a' : undefined,
+                      }}
+                    >
+                      {line}
+                    </span>
+                  ))}
                 </h1>
 
-                {/* Sub + CTAs */}
                 <div
                   className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mt-5 sm:mt-10 animate-fade-in-up opacity-0"
                   style={{ animationFillMode: 'forwards', animationDelay: '0.68s' }}
@@ -202,7 +180,7 @@ export default function Home() {
                       href="https://maps.app.goo.gl/BBm6ZqbKpvEcn2ug7"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 sm:px-7 py-3 sm:py-4 border border-[#e8e6e0]/25 text-[#888888] hover:text-[#e8e6e0] hover:border-[#e8e6e0]/50 font-semibold text-[10px] sm:text-xs tracking-widest uppercase transition-all duration-300 touch-manipulation"
+                      className="inline-flex items-center gap-1.5 px-4 sm:px-7 py-3 sm:py-4 border border-white/25 text-[#888888] hover:text-white hover:border-white/50 font-semibold text-[10px] sm:text-xs tracking-widest uppercase transition-all duration-300 touch-manipulation"
                     >
                       <MapPin size={12} />
                       Casa
@@ -213,12 +191,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom — slide controls, always pushed to bottom */}
+          {/* Bottom — slide controls */}
           <div
             className="pb-6 sm:pb-10 flex items-end justify-between gap-4 animate-fade-in-up opacity-0"
             style={{ animationFillMode: 'forwards', animationDelay: '0.85s' }}
           >
-            {/* Dots + counter */}
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
                 {HERO_SLIDES.map((_, i) => (
@@ -244,7 +221,6 @@ export default function Home() {
               </span>
             </div>
 
-            {/* Product card — sm+ only */}
             <Link
               to={`/product/${HERO_SLIDES[activeSlide].id}`}
               className="hidden sm:flex items-center gap-3 glass px-3 sm:px-4 py-2.5 hover:border-[#c9b99a]/20 transition-all duration-300 group"
@@ -263,7 +239,6 @@ export default function Home() {
               <ArrowRight size={11} className="text-[#888888] group-hover:text-[#c9b99a] transition-colors" />
             </Link>
 
-            {/* Scroll — lg+ */}
             <div className="hidden lg:flex flex-col items-center gap-2">
               <ChevronDown size={14} className="text-[#3a3a3a] animate-bounce" />
               <span className="tag text-[#3a3a3a] text-[9px] tracking-widest">Scroll</span>
@@ -271,9 +246,9 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Right side image panel (desktop) ── */}
+        {/* Right side image panel (desktop) */}
         <div className="absolute right-0 top-0 bottom-0 w-[38%] z-[2] hidden xl:block pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10" />
           {HERO_SLIDES.map((slide, i) => (
             <div
               key={slide.id}
@@ -289,13 +264,9 @@ export default function Home() {
               />
             </div>
           ))}
-          {/* Vertical text on right edge */}
           <div className="absolute right-6 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-3">
             <div className="w-px h-12 bg-gradient-to-b from-transparent to-[#c9b99a]/30" />
-            <span
-              className="tag text-[#3a3a3a] text-[9px] tracking-[0.25em]"
-              style={{ writingMode: 'vertical-rl' }}
-            >
+            <span className="tag text-[#3a3a3a] text-[9px] tracking-[0.25em]" style={{ writingMode: 'vertical-rl' }}>
               {HERO_SLIDES[activeSlide].tag}
             </span>
             <div className="w-px h-12 bg-gradient-to-t from-transparent to-[#c9b99a]/30" />
@@ -312,44 +283,43 @@ export default function Home() {
       `}</style>
 
       {/* ─── MARQUEE ─── */}
-      <div className="bg-[#0d0d0d] border-y border-[#1e1e1e] py-5 overflow-hidden">
+      <div className="py-5 overflow-hidden" style={{ background: 'var(--bg-elevated)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
         <div className="flex animate-marquee whitespace-nowrap">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className="flex items-center gap-10 mr-10 flex-shrink-0">
-              <span className="font-display text-3xl text-[#222] tracking-widest">BLACK BEAR</span>
-              <span className="w-1 h-1 rounded-full bg-[#c9b99a]/30 flex-shrink-0" />
-              <span className="font-display text-3xl text-[#c9b99a]/15 tracking-widest">CASA 2024</span>
-              <span className="w-1 h-1 rounded-full bg-[#c9b99a]/30 flex-shrink-0" />
-              <span className="font-display text-3xl text-[#222] tracking-widest">PREMIUM STREETWEAR</span>
-              <span className="w-1 h-1 rounded-full bg-[#c9b99a]/30 flex-shrink-0" />
-              <span className="font-display text-3xl text-[#c9b99a]/15 tracking-widest">MADE FOR THE CULTURE</span>
-              <span className="w-1 h-1 rounded-full bg-[#c9b99a]/30 flex-shrink-0" />
+              <span className="font-display text-3xl tracking-widest" style={{ color: 'var(--border-strong)' }}>DRAPE</span>
+              <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: 'color-mix(in srgb, var(--accent) 30%, transparent)' }} />
+              <span className="font-display text-3xl tracking-widest" style={{ color: 'color-mix(in srgb, var(--accent) 15%, transparent)' }}>CASA 2024</span>
+              <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: 'color-mix(in srgb, var(--accent) 30%, transparent)' }} />
+              <span className="font-display text-3xl tracking-widest" style={{ color: 'var(--border-strong)' }}>PREMIUM STREETWEAR</span>
+              <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: 'color-mix(in srgb, var(--accent) 30%, transparent)' }} />
+              <span className="font-display text-3xl tracking-widest" style={{ color: 'color-mix(in srgb, var(--accent) 15%, transparent)' }}>MADE FOR THE CULTURE</span>
+              <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: 'color-mix(in srgb, var(--accent) 30%, transparent)' }} />
             </div>
           ))}
         </div>
       </div>
 
       {/* ─── FEATURED PRODUCTS ─── */}
-      <section className="py-20 md:py-28 bg-[#0a0a0a]">
+      <section className="py-20 md:py-28" style={{ background: 'var(--bg-base)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
             <div>
-              <span className="tag text-[#c9b99a] text-xs mb-3 block">— Featured</span>
-              <h2 className="font-display text-5xl md:text-7xl text-[#e8e6e0] tracking-wider">
+              <span className="tag text-xs mb-3 block" style={{ color: 'var(--accent)' }}>— Featured</span>
+              <h2 className="font-display text-5xl md:text-7xl tracking-wider" style={{ color: 'var(--text-primary)' }}>
                 New Drops
               </h2>
             </div>
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 text-[#888888] hover:text-[#e8e6e0] transition-colors tag text-xs self-start sm:self-end"
+              className="inline-flex items-center gap-2 transition-colors tag text-xs self-start sm:self-end"
+              style={{ color: 'var(--text-muted)' }}
             >
               View All
               <ArrowRight size={14} />
             </Link>
           </div>
 
-          {/* Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {featured.map((product) => (
               <ProductCard key={product.id} product={product} />
@@ -359,47 +329,43 @@ export default function Home() {
       </section>
 
       {/* ─── BRAND STORY ─── */}
-      <section className="py-20 md:py-32 bg-[#0d0d0d] border-y border-[#1e1e1e] overflow-hidden">
+      <section className="py-20 md:py-32 overflow-hidden" style={{ background: 'var(--bg-elevated)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Image stack */}
+            {/* Image */}
             <div className="relative h-80 md:h-[500px]">
-              <div className="absolute inset-0 bg-[#141414] rounded" />
+              <div className="absolute inset-0 rounded" style={{ background: 'var(--bg-surface)' }} />
               <img
                 src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700&q=80&fit=crop"
                 alt="Brand story"
                 className="absolute inset-0 w-full h-full object-cover rounded opacity-80"
                 loading="lazy"
               />
-              {/* Overlay frame */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 border-2 border-[#c9b99a]/30 rounded" aria-hidden="true" />
-              <div className="absolute -top-4 -left-4 w-20 h-20 border border-[#2a2a2a] rounded" aria-hidden="true" />
-              {/* Tag */}
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded border-2" style={{ borderColor: 'color-mix(in srgb, var(--accent) 30%, transparent)' }} aria-hidden="true" />
+              <div className="absolute -top-4 -left-4 w-20 h-20 rounded" style={{ border: '1px solid var(--border-mid)' }} aria-hidden="true" />
               <div className="absolute bottom-6 left-6 glass px-4 py-3 rounded">
-                <p className="font-display text-2xl text-[#c9b99a] tracking-wider">Casa</p>
-                <p className="tag text-[#888888] text-[10px] mt-0.5">Casablanca, Morocco</p>
+                <p className="font-display text-2xl tracking-wider" style={{ color: 'var(--accent)' }}>Casa</p>
+                <p className="tag text-[10px] mt-0.5" style={{ color: 'var(--text-muted)' }}>Casablanca, Morocco</p>
               </div>
             </div>
 
             {/* Text */}
             <div>
-              <span className="tag text-[#c9b99a] text-xs mb-4 block">— Our Story</span>
-              <h2 className="font-display text-4xl md:text-6xl text-[#e8e6e0] tracking-wider mb-8 leading-tight">
-                Born in the
-                <br />
-                <span className="text-[#c9b99a]">Shadows</span>
-                <br />
-                of Casa
+              <span className="tag text-xs mb-4 block" style={{ color: 'var(--accent)' }}>— Our Story</span>
+              <h2 className="font-display text-4xl md:text-6xl tracking-wider mb-8 leading-tight" style={{ color: 'var(--text-primary)' }}>
+                Born in the<br />
+                <span style={{ color: 'var(--accent)' }}>Shadows</span>
+                <br />of Casa
               </h2>
-              <div className="space-y-5 text-[#888888] text-sm md:text-base leading-relaxed">
+              <div className="space-y-5 text-sm md:text-base leading-relaxed" style={{ color: 'var(--text-muted)' }}>
                 <p>
-                  BLACK BEAR was born from the streets of Casablanca — a city that moves fast, dresses sharp, and never follows. We're not here to chase trends. We set them.
+                  DRAPE was born from the streets of Casablanca — a city that moves fast, dresses sharp, and never follows. We're not here to chase trends. We set them.
                 </p>
                 <p>
-                  Every piece is designed with intention: premium materials, urban silhouettes, and that signature dark energy that Casa carries in its bones. Limited runs. No restocks. You either move when it drops, or you wait.
+                  Every piece is designed with intention: premium materials, urban silhouettes, and that signature energy that Casa carries in its bones. Limited runs. No restocks. You either move when it drops, or you wait.
                 </p>
                 <p>
-                  This is more than clothing. It's a statement. <span className="text-[#e8e6e0]">Join the movement.</span>
+                  This is more than clothing. It's a statement. <span style={{ color: 'var(--text-primary)' }}>Join the movement.</span>
                 </p>
               </div>
 
@@ -412,8 +378,8 @@ export default function Home() {
                   { number: 'Casa', label: 'Based' },
                 ].map((stat) => (
                   <div key={stat.label}>
-                    <p className="font-display text-3xl text-[#c9b99a] tracking-wider">{stat.number}</p>
-                    <p className="tag text-[#3a3a3a] text-[10px] mt-1">{stat.label}</p>
+                    <p className="font-display text-3xl tracking-wider" style={{ color: 'var(--accent)' }}>{stat.number}</p>
+                    <p className="tag text-[10px] mt-1" style={{ color: 'var(--text-faint)' }}>{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -430,9 +396,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── JOIN THE MOVEMENT BANNER ─── */}
-      <section className="relative py-16 sm:py-24 overflow-hidden bg-[#0a0a0a]">
-        {/* Background image */}
+      {/* ─── JOIN THE MOVEMENT ─── */}
+      <section className="relative py-16 sm:py-24 overflow-hidden" style={{ background: 'var(--bg-base)' }}>
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1200&q=80&fit=crop"
@@ -440,22 +405,19 @@ export default function Home() {
             aria-hidden="true"
             className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, var(--bg-base), transparent, var(--bg-base))' }} />
         </div>
-        {/* Grid lines */}
         <div
           className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 48px, #c9b99a 48px, #c9b99a 49px), repeating-linear-gradient(90deg, transparent, transparent 48px, #c9b99a 48px, #c9b99a 49px)',
-          }}
+          style={{ backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 48px, var(--accent) 48px, var(--accent) 49px), repeating-linear-gradient(90deg, transparent, transparent 48px, var(--accent) 48px, var(--accent) 49px)` }}
           aria-hidden="true"
         />
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          <span className="tag text-[#c9b99a] text-xs mb-4 sm:mb-6 block">— Available Now</span>
-          <h2 className="font-display text-[clamp(2.8rem,8vw,7rem)] text-[#e8e6e0] tracking-wider mb-4 sm:mb-6 leading-none">
+          <span className="tag text-xs mb-4 sm:mb-6 block" style={{ color: 'var(--accent)' }}>— Available Now</span>
+          <h2 className="font-display text-[clamp(2.8rem,8vw,7rem)] tracking-wider mb-4 sm:mb-6 leading-none" style={{ color: 'var(--text-primary)' }}>
             Join The<br />Movement
           </h2>
-          <p className="text-[#888888] text-sm max-w-sm mx-auto mb-8 sm:mb-10 leading-relaxed">
+          <p className="text-sm max-w-sm mx-auto mb-8 sm:mb-10 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
             Premium streetwear drops without warning. Follow the brand and be ready when Casa speaks.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
@@ -464,30 +426,31 @@ export default function Home() {
               <ArrowRight size={15} />
             </Link>
             <a
-              href="https://www.instagram.com/blackbear.ma/"
+              href="https://www.instagram.com/drape.ma/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-sm touch-manipulation"
             >
               <InstagramIcon size={15} />
-              @blackbear.ma
+              @drape.ma
             </a>
           </div>
         </div>
       </section>
 
       {/* ─── INSTAGRAM GRID ─── */}
-      <section className="py-16 bg-[#0d0d0d] border-t border-[#1e1e1e]">
+      <section className="py-16" style={{ background: 'var(--bg-elevated)', borderTop: '1px solid var(--border)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="font-display text-4xl text-[#e8e6e0] tracking-wider">
-              @blackbear.ma
+            <h2 className="font-display text-4xl tracking-wider" style={{ color: 'var(--text-primary)' }}>
+              @drape.ma
             </h2>
             <a
-              href="https://www.instagram.com/blackbear.ma/"
+              href="https://www.instagram.com/drape.ma/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#888888] hover:text-[#c9b99a] transition-colors tag text-xs"
+              className="inline-flex items-center gap-2 transition-colors tag text-xs"
+              style={{ color: 'var(--text-muted)' }}
             >
               <InstagramIcon size={14} />
               Follow Us
@@ -497,7 +460,7 @@ export default function Home() {
             {instagramPosts.map((src, i) => (
               <a
                 key={i}
-                href="https://www.instagram.com/blackbear.ma/"
+                href="https://www.instagram.com/drape.ma/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block aspect-square overflow-hidden group relative"
@@ -516,7 +479,7 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <p className="text-center tag text-[#3a3a3a] text-[10px] mt-6">
+          <p className="text-center tag text-[10px] mt-6" style={{ color: 'var(--text-faint)' }}>
             Premium Streetwear from the shadows of Casa. Made for the culture.
           </p>
         </div>

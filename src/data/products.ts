@@ -43,7 +43,7 @@ export const products: Product[] = [
     colors: ['Black', 'White'],
     sizes: ['S', 'M', 'L', 'XL'],
     description:
-      '240gsm premium cotton. Boxy oversized cut with BLACK BEAR wordmark screen-printed on the back. The essential layer for the Casa streets.',
+      '240gsm premium cotton. Boxy oversized cut with DRAPE wordmark screen-printed on the back. The essential layer for the Casa streets.',
     isBestSeller: true,
     image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80&fit=crop',
     images: [
@@ -100,14 +100,14 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 'blackbear-tote',
-    name: 'Black Bear Tote Bag',
+    id: 'drape-tote',
+    name: 'Drape Tote Bag',
     price: 129,
     category: 'Accessories',
     colors: ['Black'],
     sizes: ['One Size'],
     description:
-      'Heavy canvas tote. BLACK BEAR logo heat-pressed on front. Double stitched handles. 15L capacity. Carry your culture wherever you go.',
+      'Heavy canvas tote. DRAPE logo heat-pressed on front. Double stitched handles. 15L capacity. Carry your culture wherever you go.',
     image: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=600&q=80&fit=crop',
     images: [
       'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=600&q=80&fit=crop',

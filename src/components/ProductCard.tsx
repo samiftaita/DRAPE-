@@ -32,8 +32,10 @@ export default function ProductCard({ product }: ProductCardProps) {
   }
 
   return (
-    <article className="group card-hover bg-[#141414] overflow-hidden border border-[#1e1e1e] hover:border-[#2a2a2a] flex flex-col">
-
+    <article
+      className="group card-hover overflow-hidden flex flex-col"
+      style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+    >
       {/* ── Image ── */}
       <Link
         to={`/product/${product.id}`}
@@ -41,9 +43,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         style={{ aspectRatio: '3/4' }}
         aria-label={`View ${product.name}`}
       >
-        {/* Skeleton */}
         {!imgLoaded && (
-          <div className="absolute inset-0 shimmer bg-[#1a1a1a]" />
+          <div className="absolute inset-0 shimmer" style={{ background: 'var(--bg-input)' }} />
         )}
         <img
           src={product.image}
@@ -54,16 +55,21 @@ export default function ProductCard({ product }: ProductCardProps) {
           }`}
           loading="lazy"
         />
-        {/* Gradient overlay */}
         <div className="absolute inset-0 image-overlay opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
 
         {/* Badge */}
         {product.badge ? (
-          <div className="absolute top-2.5 left-2.5 bg-[#c9b99a] text-[#0a0a0a] tag px-2 py-0.5 text-[9px] sm:text-[10px]">
+          <div
+            className="absolute top-2.5 left-2.5 tag px-2 py-0.5 text-[9px] sm:text-[10px]"
+            style={{ background: 'var(--accent)', color: 'var(--bg-base)' }}
+          >
             {product.badge}
           </div>
         ) : product.isBestSeller ? (
-          <div className="absolute top-2.5 left-2.5 bg-[#0a0a0a]/80 border border-[#2a2a2a] text-[#888888] tag px-2 py-0.5 text-[9px] sm:text-[10px]">
+          <div
+            className="absolute top-2.5 left-2.5 tag px-2 py-0.5 text-[9px] sm:text-[10px]"
+            style={{ background: 'var(--bg-base)', border: '1px solid var(--border-mid)', color: 'var(--text-muted)', opacity: 0.9 }}
+          >
             Best Seller
           </div>
         ) : null}
@@ -77,13 +83,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="min-w-0">
             <Link
               to={`/product/${product.id}`}
-              className="text-[#e8e6e0] font-medium text-xs sm:text-sm hover:text-[#c9b99a] transition-colors leading-tight block truncate"
+              className="font-medium text-xs sm:text-sm transition-colors leading-tight block truncate"
+              style={{ color: 'var(--text-primary)' }}
             >
               {product.name}
             </Link>
-            <p className="tag text-[#3a3a3a] text-[9px] mt-0.5">{product.category}</p>
+            <p className="tag text-[9px] mt-0.5" style={{ color: 'var(--text-faint)' }}>{product.category}</p>
           </div>
-          <span className="text-[#c9b99a] font-semibold text-xs sm:text-sm whitespace-nowrap flex-shrink-0">
+          <span className="font-semibold text-xs sm:text-sm whitespace-nowrap flex-shrink-0" style={{ color: 'var(--accent)' }}>
             {product.price.toLocaleString()} MAD
           </span>
         </div>
@@ -94,27 +101,28 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div
               key={color}
               title={color}
-              className="w-3 h-3 rounded-full border border-[#2a2a2a] flex-shrink-0"
-              style={{ backgroundColor: COLOR_MAP[color] ?? '#888888' }}
+              className="w-3 h-3 rounded-full flex-shrink-0"
+              style={{ backgroundColor: COLOR_MAP[color] ?? '#888888', border: '1px solid var(--border-mid)' }}
             />
           ))}
           {product.colors.length > 1 && (
-            <span className="text-[#3a3a3a] text-[9px] ml-0.5 tag">{product.colors.length} colors</span>
+            <span className="text-[9px] ml-0.5 tag" style={{ color: 'var(--text-faint)' }}>{product.colors.length} colors</span>
           )}
         </div>
 
-        {/* Sizes — larger touch targets on mobile */}
+        {/* Sizes */}
         {product.sizes[0] !== 'One Size' ? (
           <div className="flex items-center gap-1 sm:gap-1.5 mb-3 flex-wrap">
             {product.sizes.map((size) => (
               <button
                 key={size}
                 onClick={() => setSelectedSize(size)}
-                className={`min-w-[32px] sm:min-w-[34px] h-8 sm:h-8 px-1 text-[10px] sm:text-[11px] border font-medium transition-all duration-150 touch-manipulation ${
+                className="min-w-[32px] sm:min-w-[34px] h-8 px-1 text-[10px] sm:text-[11px] font-medium transition-all duration-150 touch-manipulation"
+                style={
                   selectedSize === size
-                    ? 'border-[#c9b99a] text-[#c9b99a] bg-[#c9b99a]/10'
-                    : 'border-[#2a2a2a] text-[#888888] hover:border-[#3a3a3a] hover:text-[#e8e6e0]'
-                }`}
+                    ? { border: '1px solid var(--accent)', color: 'var(--accent)', background: 'color-mix(in srgb, var(--accent) 10%, transparent)' }
+                    : { border: '1px solid var(--border-mid)', color: 'var(--text-muted)', background: 'transparent' }
+                }
                 aria-label={`Size ${size}`}
                 aria-pressed={selectedSize === size}
               >
@@ -123,17 +131,18 @@ export default function ProductCard({ product }: ProductCardProps) {
             ))}
           </div>
         ) : (
-          <p className="tag text-[#3a3a3a] text-[9px] mb-3">One Size</p>
+          <p className="tag text-[9px] mb-3" style={{ color: 'var(--text-faint)' }}>One Size</p>
         )}
 
-        {/* Add to cart — full width, good touch target */}
+        {/* Add to cart */}
         <button
           onClick={handleQuickAdd}
-          className={`mt-auto w-full flex items-center justify-center gap-2 py-3 sm:py-3 border transition-all duration-250 tag text-[10px] sm:text-[11px] touch-manipulation ${
+          className="mt-auto w-full flex items-center justify-center gap-2 py-3 tag text-[10px] sm:text-[11px] touch-manipulation transition-all duration-250"
+          style={
             justAdded
-              ? 'bg-[#1a3a1a] border-green-800 text-green-400'
-              : 'bg-[#1e1e1e] hover:bg-[#e8e6e0] hover:text-[#0a0a0a] text-[#e8e6e0] border-[#2a2a2a] hover:border-[#e8e6e0]'
-          }`}
+              ? { background: 'var(--color-success-bg)', border: '1px solid #15803d', color: '#4ade80' }
+              : { background: 'var(--bg-elevated)', border: '1px solid var(--border-mid)', color: 'var(--text-primary)' }
+          }
           aria-label={`Add ${product.name} to cart`}
         >
           <ShoppingBag size={12} />

@@ -147,7 +147,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="px-4 py-6" style={{ borderTop: '1px solid var(--border)' }}>
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs" style={{ color: 'var(--text-faint)' }}>
-          <span>© 2024 DRAPE. All rights reserved.</span>
+          <span>© 2026 DRAPE. All rights reserved.</span>
           <span className="tag tracking-widest">drape.ma</span>
         </div>
       </div>

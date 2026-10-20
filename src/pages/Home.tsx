@@ -127,7 +127,7 @@ export default function Home() {
           >
             <div className="w-5 sm:w-6 h-px bg-[#c9b99a]" />
             <span className="tag text-[#c9b99a] text-[9px] sm:text-[10px] tracking-[0.15em] sm:tracking-[0.2em]">
-              Casa, Morocco — Est. 2024
+              Casa, Morocco — Est. 2026
             </span>
           </div>
 

@@ -112,7 +112,7 @@ export default function Home() {
             className="tag text-[9px] tracking-[0.3em]"
             style={{ color: 'rgba(201,185,154,0.5)', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
           >
-            drape.ma — Casa 2024
+            drape.ma — Casa 2026
           </span>
           <div className="w-px h-16 bg-gradient-to-t from-transparent to-[#c9b99a]/40" />
         </div>

@@ -289,7 +289,7 @@ export default function Home() {
             <div key={i} className="flex items-center gap-10 mr-10 flex-shrink-0">
               <span className="font-display text-3xl tracking-widest" style={{ color: 'var(--border-strong)' }}>DRAPE</span>
               <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: 'color-mix(in srgb, var(--accent) 30%, transparent)' }} />
-              <span className="font-display text-3xl tracking-widest" style={{ color: 'color-mix(in srgb, var(--accent) 15%, transparent)' }}>CASA 2024</span>
+              <span className="font-display text-3xl tracking-widest" style={{ color: 'color-mix(in srgb, var(--accent) 15%, transparent)' }}>CASA 2026</span>
               <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: 'color-mix(in srgb, var(--accent) 30%, transparent)' }} />
               <span className="font-display text-3xl tracking-widest" style={{ color: 'var(--border-strong)' }}>PREMIUM STREETWEAR</span>
               <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: 'color-mix(in srgb, var(--accent) 30%, transparent)' }} />
